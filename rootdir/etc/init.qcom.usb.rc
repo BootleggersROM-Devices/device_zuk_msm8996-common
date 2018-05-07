@@ -29,6 +29,7 @@ import /vendor/etc/init/hw/init.zuk.usb.rc
 
 on init
     write /sys/class/android_usb/android0/f_rndis/wceis 1
+    setprop persist.sys.usb.config.extra none
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
     write /sys/class/android_usb/android0/iManufacturer ShenQi Inc.
 

@@ -8,4 +8,7 @@
         <!-- Show cdma auto network mode in (global) roaming -->
         <boolean name="show_cdma_choices_bool" value="true" />
     </carrier_config>
+    <carrier_config mcc="404" mnc="20">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
 </carrier_config_list>

@@ -32,10 +32,17 @@ on charger
 
 on enable-low-power
     # Set ioscheduler
-    setprop sys.io.scheduler "bfq"
+    setprop sys.io.scheduler "maple"
+
+    write /sys/block/dm-0/queue/read_ahead_kb 2048
+    write /sys/block/sda/queue/read_ahead_kb 2048
+    write /sys/block/sde/queue/read_ahead_kb 2048
+    write /sys/block/dm-0/queue/scheduler maple
+    write /sys/block/sda/queue/scheduler maple
+    write /sys/block/sde/queue/scheduler maple 
 
     # Disable thermal hotplug to switch governor
-    write /sys/module/msm_thermal/core_control/enabled 0
+    # write /sys/module/msm_thermal/core_control/enabled 0
 
     # Enable Adaptive LMK
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
@@ -72,7 +79,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 0
 
     # Re-enable thermal hotplug
-    write /sys/module/msm_thermal/core_control/enabled 1
+    # write /sys/module/msm_thermal/core_control/enabled 1
 
     # Input boost configuration
     write /sys/module/cpu_boost/parameters/input_boost_freq "0:1324800 2:1324800"

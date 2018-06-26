@@ -39,7 +39,7 @@ on charger
 
 on enable-low-power
     # Set ioscheduler
-    setprop sys.io.scheduler "maple"
+    setprop sys.io.scheduler "bfq"
 
     # Disable thermal hotplug to switch governor
     # write /sys/module/msm_thermal/core_control/enabled 0

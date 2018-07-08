@@ -43,31 +43,12 @@ on enable-low-power
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
 
-        # Set light thermal restrictions while optimizing apps
+    # Set light thermal restrictions while optimizing apps
     # [throttle_freq_LITTLE, throttle_freq_big, throttle_temp, unthrottle_temp]
-    write /sys/kernel/msm_thermal/zone0 "1228800 1632000 47 45"
+    write /sys/kernel/msm_thermal/zone0 "1228800 1824000 46 44"
     write /sys/kernel/msm_thermal/zone1 "1228800 1555200 50 47"
     write /sys/kernel/msm_thermal/zone2 "1036800 1248000 55 53"
-    write /sys/kernel/msm_thermal/zone3 "729600 729600 65 60"
-    write /sys/kernel/msm_thermal/enabled 1
-    
-    # Set thermal restrictions
-    write /sys/kernel/msm_thermal/enabled 0
-    write /sys/kernel/msm_thermal/zone0 "1593600 2150400 45 43"
-    write /sys/kernel/msm_thermal/zone1 "1459200 2073600 48 45"
-    write /sys/kernel/msm_thermal/zone2 "1382400 1996800 50 48"
-    write /sys/kernel/msm_thermal/zone3 "1305600 1920000 53 50"
-    write /sys/kernel/msm_thermal/zone4 "1228800 1824000 57 53"
-    write /sys/kernel/msm_thermal/zone5 "1190400 1708800 61 57"
-    write /sys/kernel/msm_thermal/zone6 "1132800 1632000 63 61"
-    write /sys/kernel/msm_thermal/zone7 "1056000 1555200 65 63"
-    write /sys/kernel/msm_thermal/zone8 "979200 1478400 70 65"
-    write /sys/kernel/msm_thermal/zone9 "902400 1401600 73 70"
-    write /sys/kernel/msm_thermal/zone10 "748800 1324800 75 73"
-    write /sys/kernel/msm_thermal/zone11 "672000 1248000 80 75"
-    write /sys/kernel/msm_thermal/zone12 "595200 1190400 85 80"
-    write /sys/kernel/msm_thermal/zone8 "729600 729600 65 60"
-    write /sys/kernel/msm_thermal/sampling_ms 8000
+    write /sys/kernel/msm_thermal/zone3 "748800 1248000 65 63"
     write /sys/kernel/msm_thermal/enabled 1
 
     # Configure governor settings for little cluster
@@ -160,6 +141,24 @@ on enable-low-power
     write /dev/cpuset/foreground/cpus 0-2
     write /dev/cpuset/background/cpus 0
     write /dev/cpuset/system-background/cpus 0-2
+	
+    # Set thermal restrictions
+    write /sys/kernel/msm_thermal/enabled 0
+    write /sys/kernel/msm_thermal/zone0 "1593600 2150400 45 43"
+    write /sys/kernel/msm_thermal/zone1 "1459200 2073600 48 45"
+    write /sys/kernel/msm_thermal/zone2 "1382400 1996800 50 48"
+    write /sys/kernel/msm_thermal/zone3 "1305600 1920000 53 50"
+    write /sys/kernel/msm_thermal/zone4 "1228800 1824000 57 53"
+    write /sys/kernel/msm_thermal/zone5 "1190400 1708800 61 57"
+    write /sys/kernel/msm_thermal/zone6 "1132800 1632000 63 61"
+    write /sys/kernel/msm_thermal/zone7 "1056000 1555200 65 63"
+    write /sys/kernel/msm_thermal/zone8 "979200 1478400 70 65"
+    write /sys/kernel/msm_thermal/zone9 "902400 1401600 73 70"
+    write /sys/kernel/msm_thermal/zone10 "748800 1324800 75 73"
+    write /sys/kernel/msm_thermal/zone11 "672000 1248000 80 75"
+    write /sys/kernel/msm_thermal/zone12 "595200 1190400 85 80"
+    write /sys/kernel/msm_thermal/sampling_ms 8000
+    write /sys/kernel/msm_thermal/enabled 1
 
 service charger /sbin/chargeonlymode
     class charger

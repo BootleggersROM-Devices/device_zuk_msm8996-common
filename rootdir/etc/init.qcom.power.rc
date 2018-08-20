@@ -194,17 +194,21 @@ on enable-low-power
      
     # Set thermal restrictions
     write /sys/kernel/msm_thermal/enabled 0
-    write /sys/kernel/msm_thermal/zone0 "1401600 1785600 41 39"
-    write /sys/kernel/msm_thermal/zone1 "1324800 1555200 42 41"
-    write /sys/kernel/msm_thermal/zone2 "1228800 1478400 43 42"
-    write /sys/kernel/msm_thermal/zone3 "1228800 1401600 44 43"
-    write /sys/kernel/msm_thermal/zone4 "1190400 1324800 45 44"
-    write /sys/kernel/msm_thermal/zone5 "1190400 1248000 47 45"
-    write /sys/kernel/msm_thermal/zone6 "1113600 1190400 49 47"
-    write /sys/kernel/msm_thermal/zone7 "1036800 940800 54 49"
-    write /sys/kernel/msm_thermal/zone8 "729600 729600 65 60"
+    write /sys/kernel/msm_thermal/zone0 "1478400 2073600 32 30"
+    write /sys/kernel/msm_thermal/zone1 "1478400 1996800 34 31"
+    write /sys/kernel/msm_thermal/zone2 "1401600 1920000 36 33"
+    write /sys/kernel/msm_thermal/zone3 "1401600 1824000 38 35"
+    write /sys/kernel/msm_thermal/zone4 "1228800 1708800 40 37"
+    write /sys/kernel/msm_thermal/zone5 "1228800 1632000 42 39"
+    write /sys/kernel/msm_thermal/zone6 "1228800 1478400 43 41"
+    write /sys/kernel/msm_thermal/zone7 "1190400 1401600 44 42"
+    write /sys/kernel/msm_thermal/zone8 "1190400 1401600 45 43"
+    write /sys/kernel/msm_thermal/zone9 "1132800 1324800 48 44"
+    write /sys/kernel/msm_thermal/zone10 "1036800 1248000 50 45"
+    write /sys/kernel/msm_thermal/zone11 "979200 1190400 53 47"
+    write /sys/kernel/msm_thermal/zone12 "729600 940800 60 50"
     write /sys/kernel/msm_thermal/sampling_ms 8000
-    write /sys/kernel/msm_thermal/enabled 1    
+    write /sys/kernel/msm_thermal/enabled 1
 
 service charger /sbin/chargeonlymode
     class charger

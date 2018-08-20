@@ -486,12 +486,6 @@
          when there's no network connection. If the scan doesn't timeout, use zero -->
     <integer name="config_radioScanningTimeout">10000</integer>
 
-    <!-- Default value for proximity check on screen wake
-     NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)-->
-    <bool name="config_proximityCheckOnWake">true</bool>
-    <integer name="config_proximityCheckTimeout">3000</integer>
-    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
-
     <!-- Hardware keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
@@ -515,9 +509,6 @@
 
     <!-- Whether notify fingerprint client of successful cancelled authentication -->
     <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
-
-    <!-- Flashlight on power button -->
-    <integer name="config_flashlightProximityTimeout">3000</integer>
 
     <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
          This integer should equal the sum of the corresponding value for each

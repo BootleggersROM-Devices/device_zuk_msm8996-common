@@ -41,4 +41,6 @@
   <!-- Whether device supports an alt. ambient display -->
   <bool name="config_alt_ambient_display">true</bool>
 
+    <!-- Specify custom blanking delay of the display -->
+    <integer name="config_screen_off_delay">0</integer>
 </resources>

@@ -394,6 +394,12 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
+
 #Zuk Extras
 PRODUCT_PACKAGES += \
     ZukPref
+
+# Spectrum Support
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init.spectrum.rc:root/init.spectrum.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.spectrum.sh:root/init.spectrum.sh

@@ -1,0 +1,201 @@
+# SPECTRUM KERNEL MANAGER
+# Ramdisk file for profile based kernel management
+# Implimentation inspired by Franco's fku profiles
+
+    # Spectrum Initialization
+    on property:sys.boot_completed=1
+    # Set default profile on first boot
+    exec u:r:init:s0 root root -- /init.spectrum.sh
+    exec u:r:su:s0 root root -- /init.spectrum.sh
+    # Enable Spectrum support
+    setprop spectrum.support 1
+    # Add kernel name
+    setprop persist.spectrum.kernel BubbleWrap-EAS
+
+# Balance (default profile)
+on property:persist.spectrum.profile=0
+	# Set Up and Down Rates
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/down_rate_limit_us 20000
+
+    # Set I/O Boosts
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 0
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/iowait_boost_enable 0
+
+    # Set Stune Boost Limit
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/bit_shift 8
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/bit_shift 8
+
+    # Set Stune Boost Limit
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/stune_boost_limit 100
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/stune_boost_limit 100
+
+    # Set Schedtune Boosts
+    write /dev/stune/schedtune.boost 0
+    write /dev/stune/schedtune.prefer_idle 0
+    write /dev/stune/top-app/schedtune.boost 0
+    write /dev/stune/top-app/schedtune.prefer_idle 1
+    write /dev/stune/foreground/schedtune.boost 0
+    write /dev/stune/foreground/schedtune.prefer_idle 1
+    write /dev/stune/background/schedtune.boost 0
+    write /dev/stune/background/schedtune.prefer_idle 0
+    write /dev/stune/rt/schedtune.boost 0
+    write /dev/stune/rt/schedtune.prefer_idle 1
+
+    # Configure CPU Input Boost
+    write /sys/module/cpu_input_boost/parameters/input_boost_duration 128
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 652800
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 652800
+    write /sys/module/cpu_input_boost/parameters/general_boost_freq_lp 556800
+    write /sys/module/cpu_input_boost/parameters/general_boost_freq_hp 556800
+    write /sys/module/cpu_input_boost/parameters/input_boost_return_freq_lp 0
+    write /sys/module/cpu_input_boost/parameters/input_boost_return_freq_hp 0
+    write /sys/module/cpu_input_boost/parameters/input_dynamic_stune_boost 23
+    write /sys/module/cpu_input_boost/parameters/general_dynamic_stune_boost 18
+    write /sys/module/cpu_input_boost/parameters/max_dynamic_stune_boost 100
+
+    # GPU Configuration
+    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
+
+# Performance
+on property:persist.spectrum.profile=1
+	# Set Up and Down Rates
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 125
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 80000
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/up_rate_limit_us 125
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/down_rate_limit_us 80000
+
+    # Set I/O Boosts
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/iowait_boost_enable 1
+
+    # Set Stune Boost Limit
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/bit_shift 2
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/bit_shift 2
+
+    # Set Stune Boost Limit
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/stune_boost_limit 100
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/stune_boost_limit 100
+
+    # Set Schedtune Boosts
+    write /dev/stune/schedtune.boost 0
+    write /dev/stune/schedtune.prefer_idle 0
+    write /dev/stune/top-app/schedtune.boost 0
+    write /dev/stune/top-app/schedtune.prefer_idle 1
+    write /dev/stune/foreground/schedtune.boost 0
+    write /dev/stune/foreground/schedtune.prefer_idle 1
+    write /dev/stune/background/schedtune.boost 0
+    write /dev/stune/background/schedtune.prefer_idle 0
+    write /dev/stune/rt/schedtune.boost 0
+    write /dev/stune/rt/schedtune.prefer_idle 1
+
+    # Configure CPU Input Boost
+    write /sys/module/cpu_input_boost/parameters/input_boost_duration 512
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 960000
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 940800
+    write /sys/module/cpu_input_boost/parameters/general_boost_freq_lp 652800
+    write /sys/module/cpu_input_boost/parameters/general_boost_freq_hp 652800
+    write /sys/module/cpu_input_boost/parameters/input_boost_return_freq_lp 0
+    write /sys/module/cpu_input_boost/parameters/input_boost_return_freq_hp 0
+    write /sys/module/cpu_input_boost/parameters/input_dynamic_stune_boost 25
+    write /sys/module/cpu_input_boost/parameters/general_dynamic_stune_boost 20
+    write /sys/module/cpu_input_boost/parameters/max_dynamic_stune_boost 100
+
+    # GPU Configuration
+    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 1
+
+# Battery
+on property:persist.spectrum.profile=2
+	# Set Up and Down Rates
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/down_rate_limit_us 20000
+
+    # Set I/O Boosts
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 0
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/iowait_boost_enable 0
+
+    # Set Stune Boost Limit
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/bit_shift 3
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/bit_shift 3
+
+    # Set Stune Boost Limit
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/stune_boost_limit 60
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/stune_boost_limit 50
+
+    # Set Schedtune Boosts
+    write /dev/stune/schedtune.boost 0
+    write /dev/stune/schedtune.prefer_idle 0
+    write /dev/stune/top-app/schedtune.boost 0
+    write /dev/stune/top-app/schedtune.prefer_idle 1
+    write /dev/stune/foreground/schedtune.boost 0
+    write /dev/stune/foreground/schedtune.prefer_idle 1
+    write /dev/stune/background/schedtune.boost 0
+    write /dev/stune/background/schedtune.prefer_idle 0
+    write /dev/stune/rt/schedtune.boost 0
+    write /dev/stune/rt/schedtune.prefer_idle 1
+
+    # Configure CPU Input Boost
+    write /sys/module/cpu_input_boost/parameters/input_boost_duration 250
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 0
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 0
+    write /sys/module/cpu_input_boost/parameters/general_boost_freq_lp 0
+    write /sys/module/cpu_input_boost/parameters/general_boost_freq_hp 0
+    write /sys/module/cpu_input_boost/parameters/input_boost_return_freq_lp 0
+    write /sys/module/cpu_input_boost/parameters/input_boost_return_freq_hp 0
+    write /sys/module/cpu_input_boost/parameters/input_dynamic_stune_boost 7
+    write /sys/module/cpu_input_boost/parameters/general_dynamic_stune_boost 5
+    write /sys/module/cpu_input_boost/parameters/max_dynamic_stune_boost 25
+
+    # GPU Configuration
+    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
+
+# Gaming
+on property:persist.spectrum.profile=3
+	# Set Up and Down Rates
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 50000
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/down_rate_limit_us 50000
+
+    # Set I/O Boosts
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/iowait_boost_enable 1
+
+    # Set Stune Boost Limit
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/bit_shift 2
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/bit_shift 2
+
+    # Set Stune Boost Limit
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/stune_boost_limit 75
+    write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/stune_boost_limit 65
+
+    # Set Schedtune Boosts
+    write /dev/stune/schedtune.boost 0
+    write /dev/stune/schedtune.prefer_idle 0
+    write /dev/stune/top-app/schedtune.boost 0
+    write /dev/stune/top-app/schedtune.prefer_idle 1
+    write /dev/stune/foreground/schedtune.boost 0
+    write /dev/stune/foreground/schedtune.prefer_idle 1
+    write /dev/stune/background/schedtune.boost 0
+    write /dev/stune/background/schedtune.prefer_idle 0
+    write /dev/stune/rt/schedtune.boost 0
+    write /dev/stune/rt/schedtune.prefer_idle 1
+
+    # Configure CPU Input Boost
+    write /sys/module/cpu_input_boost/parameters/input_boost_duration 128
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 1036800
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 1036800
+    write /sys/module/cpu_input_boost/parameters/general_boost_freq_lp 729600
+    write /sys/module/cpu_input_boost/parameters/general_boost_freq_hp 729600
+    write /sys/module/cpu_input_boost/parameters/input_boost_return_freq_lp 0
+    write /sys/module/cpu_input_boost/parameters/input_boost_return_freq_hp 0
+    write /sys/module/cpu_input_boost/parameters/input_dynamic_stune_boost 15
+    write /sys/module/cpu_input_boost/parameters/general_dynamic_stune_boost 10
+    write /sys/module/cpu_input_boost/parameters/max_dynamic_stune_boost 100
+
+    # GPU Configuration
+    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 3

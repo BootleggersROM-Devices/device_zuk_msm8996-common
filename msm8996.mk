@@ -393,7 +393,7 @@ PRODUCT_BOOT_JARS += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service
+    android.hardware.biometrics.fingerprint@2.0-service.zuk
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -405,4 +405,4 @@ PRODUCT_COPY_FILES += \
 
 #Zuk Extras
 PRODUCT_PACKAGES += \
-    ZukPref	
+    ZukPref

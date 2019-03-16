@@ -26,6 +26,8 @@ on property:persist.spectrum.profile=0
     write /dev/stune/top-app/schedtune.boost 0
     write /sys/module/boost_control/parameters/dynamic_stune_boost 1
 
+    write /sys/module/boost_control/parameters/app_launch_boost_ms 500
+
     write /sys/module/cpufreq/parameters/cluster_0_ucfreq 844800
     write /sys/module/cpufreq/parameters/cluster_1_ucfreq 1036800
 
@@ -54,6 +56,8 @@ on property:persist.spectrum.profile=0
 on property:persist.spectrum.profile=1
     write /dev/stune/top-app/schedtune.boost 0
     write /sys/module/boost_control/parameters/dynamic_stune_boost 10
+
+    write /sys/module/boost_control/parameters/app_launch_boost_ms 1500
 
     write /sys/module/cpufreq/parameters/cluster_0_ucfreq 0
     write /sys/module/cpufreq/parameters/cluster_1_ucfreq 0
@@ -84,6 +88,8 @@ on property:persist.spectrum.profile=2
     write /dev/stune/top-app/schedtune.boost 0
     write /sys/module/boost_control/parameters/dynamic_stune_boost 1
 
+    write /sys/module/boost_control/parameters/app_launch_boost_ms 0
+
     write /sys/module/cpufreq/parameters/cluster_0_ucfreq 307200
     write /sys/module/cpufreq/parameters/cluster_1_ucfreq 307200
 
@@ -113,6 +119,8 @@ on property:persist.spectrum.profile=2
 on property:persist.spectrum.profile=3
     write /dev/stune/top-app/schedtune.boost 0
     write /sys/module/boost_control/parameters/dynamic_stune_boost 10
+
+    write /sys/module/boost_control/parameters/app_launch_boost_ms 1500
 
     write /sys/module/cpufreq/parameters/cluster_0_ucfreq 0
     write /sys/module/cpufreq/parameters/cluster_1_ucfreq 0

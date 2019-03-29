@@ -401,5 +401,5 @@ PRODUCT_PACKAGES += \
 
 # Spectrum Support
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/init.spectrum.rc:root/init.spectrum.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.spectrum.sh:root/init.spectrum.sh
+    $(LOCAL_PATH)/rootdir/etc/init.spectrum.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.spectrum.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.spectrum.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.spectrum.sh

@@ -28,7 +28,8 @@ $(call inherit-product, vendor/zuk/msm8996-common/msm8996-common-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay
+    $(LOCAL_PATH)/overlay \
+    $(LOCAL_PATH)/overlay-bootleg
 
 PRODUCT_ENFORCE_RRO_TARGETS := \
     framework-res
@@ -150,9 +151,9 @@ PRODUCT_PACKAGES += \
     init.wlan.sh \
     ueventd.qcom.rc
 
-# ConfigPanel
+# Custom Doze
 PRODUCT_PACKAGES += \
-    ConfigPanel
+    CustomDoze
 
 # Display
 PRODUCT_PACKAGES += \
@@ -406,7 +407,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 064816e3... mam8996-common: switch to CustomDoze :)
 #Zuk Extras
 PRODUCT_PACKAGES += \
     ZukPref	

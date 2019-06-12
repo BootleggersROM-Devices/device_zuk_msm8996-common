@@ -403,11 +403,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 064816e3... mam8996-common: switch to CustomDoze :)
 #Zuk Extras
 PRODUCT_PACKAGES += \
     ZukPref	
